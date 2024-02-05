@@ -51,7 +51,7 @@ body{
     width: 225px;
     height: 225px;
     border-radius: 100%;
-    animation: loading 0.5s linear 0s infinite;
+    animation: loading 0.5s linear 0s infinite reverse;
     /* animation: spin-height 0.7s linear 0s infinite; */
 }
 
