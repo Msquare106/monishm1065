@@ -37,4 +37,15 @@
         </div>
     </div>
 </body>
+<script>
+    var loading = document.getElementById("pre-loader");
+
+    window.addEventListener("load", ()=>{
+        loading.style.opacity = "0";
+    
+        loading.addEventListener("transitionend", ()=>{
+            document.body.removeChild(loading);
+        });
+    });
+</script>
 </html>
