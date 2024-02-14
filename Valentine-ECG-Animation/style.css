@@ -23,8 +23,6 @@ body{
 }
 
 .container{
-    box-shadow: 0 0 20px hotpink inset, 0 0 20px hotpink;
-    border: 10px solid hotpink;
     position: fixed;
     display: flex;
     align-items: center;
@@ -36,11 +34,11 @@ body{
 
 .container p{
     position: absolute;
-    top: 30px;
+    top: 45%;
     color: hotpink;
-    text-shadow: 5px 5px 5px crimson, 0 0 15px hotpink, 0 0 20px hotpink;
+    text-shadow: 1px 1px 1px crimson, 0 0 15px hotpink, 0 0 20px hotpink;
     font-weight: 500;
-    font-size: 108px;
+    font-size: 18px;
 }
 
 .heart{
