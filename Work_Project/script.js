@@ -1,6 +1,7 @@
 const data_file = document.getElementById('excel_file');
 
 data_file.addEventListener('input', ()=>{
+    console.log("Read file!");
     document.getElementById('filename').innerHTML = data_file.files[0].name;
 
     // reading excel file
