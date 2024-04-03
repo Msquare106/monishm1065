@@ -24,48 +24,24 @@
         <div class="card">
             <div class="card-body ftr-container">
                 <div class="ftr-sec1">
-                    <div><b>Network Provider : </b>
-                    <select name="netpro" id="netpro">
-                        <option value="">--Select--</option>
-                    </select></div>
                     <div><b>Zone : </b>
                     <select name="zone" id="zone">
                         <option value="">--Select--</option>
                     </select></div>
-                    <div><b>State : </b>
-                    <select name="state" id="state">
-                        <option value="">--Select--</option>
-                    </select></div>
-                    <div><b>District : </b>
-                    <select name="district" id="district">
-                        <option value="">--Select--</option>
-                    </select></div>
-                </div>
-                <div class="ftr-sec2">
-                    <div><b>Block : </b>
-                    <select name="block" id="block">
-                        <option value="">--Select--</option>
-                    </select></div>
-                    <div><b>Vendor : </b>
-                    <select name="vendor" id="vendor">
-                        <option value="">--Select--</option>
-                    </select></div>
-                    <div><b>Tech Name : </b>
-                    <select name="tecname" id="tecname">
-                        <option value="">--Select--</option>
-                    </select></div>
+                    <button type="button" id="btn">Get Data</button>
+                    <!-- <div><b>Vendor : </b>
+                        <select name="vendor" id="vendor">
+                            <option value="">--Select--</option>
+                        </select></div> -->
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <button type="button" id="btn">Get Data</button>
-        </div>
-        <div id="title"></div>
     </div>
-    <div id="excel_data" class="mt-5">
-        <table class="table table-striped table-bordered" id="tb">
-            
-        </table>
+    <div id="excel_data" class="card mt-5">
+        <table class="table table-striped table-bordered" id="tb"></table>
+    </div>
+    <div id="state_data" class="mt-5">
+        <table class="table table-striped table-bordered" id="tb2"></table>
     </div>
 </body>
 <script src="temp.js"></script>
