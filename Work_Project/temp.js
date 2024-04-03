@@ -1,10 +1,9 @@
 const data_file = document.getElementById('excel_file');
 
-data_file.addEventListener('change', (event)=>{
+data_file.addEventListener('input', (event)=>{
     document.getElementById('filename').innerHTML = data_file.files[0].name;
-    document.getElementById('splitter').innerHTML = '';
-    document.getElementById('loaded').innerHTML = '';
-    console.log(data_file.files[0].name);
+    document.getElementById('splitter').innerHTML = '<hr>';
+    document.getElementById('loaded').innerHTML = 'Please Wait...';
 
     // reading excel file
     // readXlsxFile(data_file.files[0]).then((data)=>{
@@ -39,107 +38,95 @@ data_file.addEventListener('change', (event)=>{
             })
         }
 
-        filter_opt_list('netpro', col_data(0));
+        function mini_table(opt,count, row){
+            let tb = document.getElementById('tb');
+            let tr = document.createElement('tr');
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+            let hr = document.createElement('hr');
+            let hr2 = document.createElement('hr');
+            let a = document.createElement('a');
+            let sel = document.createElement('select');
+            a.id = 'detailed-'+row;
+            a.href = '#';
+            a.innerHTML = 'View details';
+            sel.id = "vendor-"+row;
+            sel.className = "ven-sel";
+            sel.innerHTML = '<option value="">--Select--</option>';
+            let vlist = [];
+            data.forEach((item)=>{
+                if(item[2]===opt){
+                    vlist.push(item[11]);
+                }
+            })
+            vlist = vlist.filter((unique, loc)=> vlist.indexOf(unique)===loc);
+            for(let j=0;j<vlist.length;j++){
+                let op = document.createElement('option');
+                op.innerHTML = vlist[j];
+                sel.appendChild(op);
+            }
+            td1.innerHTML = opt;
+            td2.innerHTML = count;
+            td3.innerHTML = "View Details by Vendor"
+            td3.appendChild(hr2);
+            td3.appendChild(sel);
+            td2.appendChild(hr);
+            td2.appendChild(a);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tb.appendChild(tr);
+        }
+
+        function unique_count(st_list, index){
+            st_list.forEach((opt)=>{
+                var count = 0;
+                data.forEach((item)=>{
+                    if(opt === item[index]){
+                        count++;
+                    }
+                })
+                mini_table(opt, count, st_list.indexOf(opt));  
+            })
+        }
+
+        filter_opt_list('zone', col_data(1));
         document.getElementById('splitter').innerHTML = '<hr>';
         document.getElementById('loaded').innerHTML = "File Loaded! - Ready to Retrieve data";
 
         // select filter list elements
-        let net_pro_list = document.getElementById('netpro');
         let zone_list = document.getElementById('zone');
-        let state_list = document.getElementById('state');
-        let dist_list = document.getElementById('district');
-        let block_list = document.getElementById('block');
         let vendor_list = document.getElementById('vendor');
-        let tecname_list = document.getElementById('tecname');
 
-        // modify zone list based on network provider selection
-        net_pro_list.addEventListener('change', ()=>{
-            let mod_zone_list = [];
-            data.forEach((item)=>{
-                if(net_pro_list.value === item[0]){
-                    mod_zone_list.push(item[1]);
-                }
-            })
-            mod_zone_list = mod_zone_list.filter((unique, loc)=> mod_zone_list.indexOf(unique) === loc);
-            filter_opt_list('zone',mod_zone_list);
-            state_list.innerHTML = '<option value="">--Select--</option>';
-            dist_list.innerHTML = '<option value="">--Select--</option>';
-            block_list.innerHTML = '<option value="">--Select--</option>';
-            vendor_list.innerHTML = '<option value="">--Select--</option>';
-            tecname_list.innerHTML = '<option value="">--Select--</option>';
-        })
-
-        // modify state list based on zone selection
+        // modify vendor list based on zone selection
         zone_list.addEventListener('change', ()=>{
-            let mod_state_list = [];
-            data.forEach((item)=>{
-                if(zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    mod_state_list.push(item[2]);
-                }
-            })
-            mod_state_list = mod_state_list.filter((unique, loc)=> mod_state_list.indexOf(unique) === loc);
-            filter_opt_list('state',mod_state_list);
-            dist_list.innerHTML = '<option value="">--Select--</option>';
-            block_list.innerHTML = '<option value="">--Select--</option>';
-            vendor_list.innerHTML = '<option value="">--Select--</option>';
-            tecname_list.innerHTML = '<option value="">--Select--</option>';
-        })
-
-        // modify district list based on state selection
-        state_list.addEventListener('change', ()=>{
-            let mod_district_list = [];
-            data.forEach((item)=>{
-                if(state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    mod_district_list.push(item[3]);
-                }
-            })
-            mod_district_list = mod_district_list.filter((unique, loc)=> mod_district_list.indexOf(unique) === loc);
-            filter_opt_list('district',mod_district_list);
-            block_list.innerHTML = '<option value="">--Select--</option>';
-            vendor_list.innerHTML = '<option value="">--Select--</option>';
-            tecname_list.innerHTML = '<option value="">--Select--</option>';
-        })
-
-        // modify block list based on district selection
-        dist_list.addEventListener('change', ()=>{
-            let mod_block_list = [];
-            data.forEach((item)=>{
-                if(dist_list.value === item[3] && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    mod_block_list.push(item[4]);
-                }
-            })
-            mod_block_list = mod_block_list.filter((unique, loc)=> mod_block_list.indexOf(unique) === loc);
-            filter_opt_list('block',mod_block_list);
-            vendor_list.innerHTML = '<option value="">--Select--</option>';
-            tecname_list.innerHTML = '<option value="">--Select--</option>';
-        })
-
-        // modify vendor list based on block selection
-        block_list.addEventListener('change', ()=>{
             let mod_vendor_list = [];
             data.forEach((item)=>{
-                if(block_list.value === item[4] && dist_list.value === item[3] 
-                && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
+                if(zone_list.value === item[1]){
                     mod_vendor_list.push(item[11]);
                 }
             })
             mod_vendor_list = mod_vendor_list.filter((unique, loc)=> mod_vendor_list.indexOf(unique) === loc);
-            filter_opt_list('vendor',mod_vendor_list);
-            tecname_list.innerHTML = '<option value="">--Select--</option>';
+            // filter_opt_list('vendor',mod_vendor_list);
         })
 
-        // modify tecname list based on vendor selection
-        vendor_list.addEventListener('change', ()=>{
-            let mod_tecname_list = [];
+        function header_row(){
+            var tb2 = document.getElementById('tb2');
+            let k = 0;
             data.forEach((item)=>{
-                if(vendor_list.value === item[11] && block_list.value === item[4] && dist_list.value === item[3] 
-                    && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    mod_tecname_list.push(item[12]);
+                if(k === 3){
+                    var tr = document.createElement('tr');
+                    for(let j=0;j<item.length; j++){
+                        var th = document.createElement('th');
+                        th.innerHTML = item[j];
+                        tr.appendChild(th);
+                    }
+                    tb2.appendChild(tr);
                 }
+                k++;
             })
-            mod_tecname_list = mod_tecname_list.filter((unique, loc)=> mod_tecname_list.indexOf(unique) === loc);
-            filter_opt_list('tecname',mod_tecname_list);
-        })
+        }
 
         // get filtered data function
         let btn = document.getElementById('btn');
@@ -147,88 +134,60 @@ data_file.addEventListener('change', (event)=>{
             let tb = document.getElementById('tb');
             tb.innerHTML = '';
 
-            for(let i=0;i<data.length;i++){
-                var tr = document.createElement('tr');
-                for(let j=0;j<data[i].length;j++){
-                    if(i === 0){
-                        var th = document.createElement('th');
-                        th.innerHTML = data[i][j];
-                        tr.appendChild(th);
-                    }
-                    else if(i===3){
-                        var th = document.createElement('th');
-                        th.innerHTML = data[i][j];
-                        tr.appendChild(th);
-                    }
-                    else{
-                        var td = document.createElement('td');
-                        td.innerHTML = data[i][j];
-                        tr.appendChild(td);
-                    }
-                }
-                tb.appendChild(tr);
-                if(i===3){break}
-            }
-
+            let state_list = [];
             data.forEach((item)=>{
-                var tr = document.createElement('tr');
-                if(tecname_list.value === '' && vendor_list.value === '' && block_list.value === '' && dist_list.value === '' 
-                    && state_list.value === '' && zone_list.value === '' && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
+                if(zone_list.value === item[1]){
+                    state_list.push(item[2]);
                 }
-                if(tecname_list.value === '' && vendor_list.value === '' && block_list.value === '' && dist_list.value === '' 
-                    && state_list.value === '' && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
-                }
-                if(tecname_list.value === '' && vendor_list.value === '' && block_list.value === '' && dist_list.value === '' 
-                    && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
-                }
-                if(tecname_list.value === '' && vendor_list.value === '' && block_list.value === '' && dist_list.value === item[3] 
-                    && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
-                }
-                if(tecname_list.value === '' && vendor_list.value === '' && block_list.value === item[4] && dist_list.value === item[3] 
-                    && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
-                }
-                if(tecname_list.value === '' && vendor_list.value === item[11] && block_list.value === item[4] && dist_list.value === item[3] 
-                    && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
-                }
-                if(tecname_list.value === item[12] && vendor_list.value === item[11] && block_list.value === item[4] && dist_list.value === item[3] 
-                    && state_list.value === item[2] && zone_list.value === item[1] && net_pro_list.value === item[0]){
-                    for (let i=0;i<item.length;i++){
-                        var td = document.createElement('td');
-                        td.innerHTML = item[i];
-                        tr.appendChild(td);
-                    }
-                }
-                tb.appendChild(tr);
+            })
+            state_list = state_list.filter((unique, loc)=> state_list.indexOf(unique) === loc);
+            unique_count(state_list, 2);
+
+            let linky = document.querySelectorAll('a');
+            let linksel = document.querySelectorAll('.ven-sel');
+            linky.forEach((l)=>{
+                l.addEventListener("click",()=>{
+                    var tb2 = document.getElementById('tb2');
+                    tb2.innerHTML = '';
+                    linksel.forEach((li)=>{
+                        li.value = '';
+                    })
+                    header_row();
+                    data.forEach((item)=>{
+                        var tr = document.createElement('tr');
+                        if(state_list[l.id[l.id.length-1]]===item[2]){
+                            for(let i=0;i<item.length;i++){
+                                var td = document.createElement('td');
+                                td.innerHTML = item[i];
+                                tr.appendChild(td);
+                            }
+                        }
+                        tb2.appendChild(tr);
+                    })
+                })
+            })
+            linksel.forEach((li)=>{
+                li.addEventListener('change', ()=>{
+                    let temp = li.value;
+                    var tb2 = document.getElementById('tb2');
+                    tb2.innerHTML = '';
+                    header_row();
+                    data.forEach((item)=>{
+                        var tr = document.createElement('tr');
+                        if(state_list[li.id[li.id.length-1]]===item[2] && li.value === item[11]){
+                            for(let i=0;i<item.length;i++){
+                                var td = document.createElement('td');
+                                td.innerHTML = item[i];
+                                tr.appendChild(td);
+                            }
+                        }
+                        tb2.appendChild(tr);
+                    })
+                    linksel.forEach((all)=>{
+                        all.value = '';
+                    })
+                    li.value = temp;
+                })
             })
         })
     }
