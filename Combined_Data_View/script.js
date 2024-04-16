@@ -384,6 +384,27 @@ get_data_btn.addEventListener('click', () => {
                     tr.appendChild(td);
                     state_col.appendChild(tr);
                 }
+                if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all') {
+                    let c = 0;
+                    data.forEach((row) => {
+                        if (row[indexofstate] === state && row[indexofphase]===phase_opt.value && row[indexofont] >= Number(ont_avl_opt.value)) {
+                            c++;
+                        }
+                    })
+                    var tr = document.createElement('tr');
+                    var td = document.createElement('td');
+                    var anc = document.createElement('a');
+                    var hr = document.createElement('hr');
+                    anc.href = '#';
+                    anc.id = 'st-detail-' + st_id_num;
+                    st_id_num++;
+                    if (c > 1 || c === 0) { anc.innerHTML = c + " Records."; } else { anc.innerHTML = c + " Record."; }  // Inserting State Data Count into Anchor Tag
+                    td.innerHTML = state;
+                    td.appendChild(hr);
+                    td.appendChild(anc);
+                    tr.appendChild(td);
+                    state_col.appendChild(tr);
+                }
             })
         }
         if (list[0] === fault_tt_list[0]) {
@@ -560,6 +581,34 @@ get_data_btn.addEventListener('click', () => {
                     })
                     table_data.appendChild(tr);
                 }
+                if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all'){
+                    var tr = document.createElement('tr');
+                    list.forEach((item) => {
+                        let c = 0;
+                        data.forEach((row) => {
+                            if (row[indexofstate] === state && row[indexofphase] === phase_opt.value && row[indexofont] >= Number(ont_avl_opt.value)) {
+                                if (isAlphanumeric(row[data[0].indexOf(item)])) {
+                                    c++;
+                                }
+                            }
+                        })
+                        var td = document.createElement('td');
+                        var anc = document.createElement('a');
+                        var hr = document.createElement('hr');
+                        anc.href = '#';
+                        anc.className = 'st-' + st_id_num;
+                        anc.id = 'tt-detail-' + tt_id_num;
+                        tt_id_num++;
+
+                        // Inserting State Data Count into Anchor Tag
+                        if (c > 1 || c === 0) { anc.innerHTML = c + " Records."; } else { anc.innerHTML = c + " Record."; }
+                        td.innerHTML = item;
+                        td.appendChild(hr);
+                        td.appendChild(anc);
+                        tr.appendChild(td);
+                    })
+                    table_data.appendChild(tr);
+                }
                 st_id_num++;
             })
         }
@@ -664,6 +713,17 @@ get_data_btn.addEventListener('click', () => {
                     }
                 })
             }
+            if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all'){
+                data_copy.forEach((row) => {
+                    if (state_list[ind] === row[indexofstate] && row[indexofont] >= Number(ont_avl_opt.value) && row[indexofphase] === phase_opt.value) {
+                        html += '<tr>';
+                        row.forEach((cell) => {
+                            html += '<td>' + cell + '</td>';
+                        })
+                        html += '</tr>';
+                    }
+                })
+            }
         }
         else if (id_value.slice(0, 10) === 'tt-detail-') {
             let cind = Number(class_value.slice(3, class_value.length));
@@ -751,6 +811,17 @@ get_data_btn.addEventListener('click', () => {
                             })
                             html += '</tr>';
                         }
+                    }
+                })
+            }
+            if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all'){
+                data_copy.forEach((row) => {
+                    if (isAlphanumeric(row[n]) && state_list[cind] === row[indexofstate] && row[indexofont] >= Number(ont_avl_opt.value) && row[indexofphase] === phase_opt.value) {
+                        html += '<tr>';
+                        row.forEach((cell) => {
+                            html += '<td>' + cell + '</td>';
+                        })
+                        html += '</tr>';
                     }
                 })
             }
