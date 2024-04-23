@@ -287,30 +287,44 @@ function state_multiselect_filter(){
     }
 }
 
+let flag = false;
 // Function to display/not-display state Dropdown menu.
 function state_options_popup(){
-    if(state_opt.style.transform === 'scaleY(0)'){
+    if(flag === false){
         state_opt.style.transform = 'scaleY(1)';
+        flag = true;
     }
-    else{
-        state_opt.style.transform = 'scaleY(0)';
+    else if(flag === true){
+        state_opt.style.transform = 'scaleY(0)'
+        flag = false;
     }
 }
 
+let hid = true;
 function hidedropdown(){
-    state_opt.style.transform = 'scaleY(0)';
+    if(hid === true){
+        state_opt.style.transform = 'scaleY(0)';
+        flag = false;
+    }
+    else{
+        hid = true;
+    }
 }
 
 // Calling dropdown display when clicked on State Filter Dropdown Button
 state_opt.style.transform = 'scaleY(0)';
 document.getElementById('toggle').addEventListener('click', ()=>{
     state_options_popup();
+    hid = false;
 })
 
-document.querySelectorAll('select').forEach((sel)=>{
-    sel.addEventListener('click', ()=>{
-        hidedropdown();
-    })
+state_opt.addEventListener('click', ()=>{
+    state_opt.style.transform = 'scaleY(1)';
+    hid = false;
+})
+
+document.addEventListener('click', ()=>{
+    hidedropdown();
 })
 
 // Function to change fraction dates to Actual Date String
@@ -437,7 +451,6 @@ function fault_data(fault_id){
 
 // Function for Final Count Data Retrieval after Filter Selection and Final Click
 get_data_btn.addEventListener('click', ()=> {
-    hidedropdown();
     document.querySelector('.table-container').style.display = '';
 
     // Getting Values of Filter Selection and storing in variables.
