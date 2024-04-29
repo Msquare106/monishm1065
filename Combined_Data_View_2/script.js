@@ -40,16 +40,17 @@ xl_file.addEventListener('input', (xlsxfile) => {
     fault_tt_list = new Array;
     phase_list = new Array;
     amc_frac_date = new Array;
-    
+
     var reader = new FileReader();
     var loaded = document.getElementById('loading');
     ld.style.display = 'flex';
     ld.querySelector('i').style.display = 'none';
     ld.className = "loading";
     reader.readAsArrayBuffer(xlsxfile.target.files[0]);
-    loaded.innerHTML = "Please Wait...";
+    loaded.innerHTML = "Do not exit the page, while data is loading!. <br>In case page is unresponsive, Please Click on 'Wait'";
     loaded.appendChild(ld);
-    reader.onloadend = ()=>{
+
+    reader.onloadend = () => {
         ld.className = "loaded";
         ld.querySelector('i').style.display = '';
         loaded.innerHTML = "File Loaded!";
@@ -61,7 +62,7 @@ xl_file.addEventListener('input', (xlsxfile) => {
         var sheet_name = work_book.SheetNames;
         data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], { header: 1 });
         data_copy = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], { header: 1 });
-        
+
         document.querySelector('.filter-sec').style.display = '';
         get_data_btn.style.display = '';
 
@@ -87,15 +88,15 @@ xl_file.addEventListener('input', (xlsxfile) => {
         }
 
         // Function to add state filters in multiselect dropdown.
-        function add_options_state(stlist){
+        function add_options_state(stlist) {
             let c = 0;
             state_opt.innerHTML = '<label for="all-states-opt" class="all-states-opt"><input type="checkbox" id="all-states-opt"><i class="fa-solid fa-check" style="margin-right: 10px;"></i>Select All (Default)</label>';
-            stlist.forEach((item)=>{
+            stlist.forEach((item) => {
                 var label = document.createElement('label');
                 var inp = document.createElement('input');
                 inp.type = "checkbox";
                 inp.className = "st-opt";
-                label.className = label.for = inp.id = "opt-"+ c;
+                label.className = label.for = inp.id = "opt-" + c;
                 label.appendChild(inp);
                 label.innerHTML += '<i class="fa-solid fa-check" style="margin-right: 10px;"></i>' + item;
                 state_opt.appendChild(label);
@@ -174,7 +175,7 @@ xl_file.addEventListener('input', (xlsxfile) => {
         // Making a copy of States for temporary use.
         state_list = state_list.slice(1, state_list.length);
         state_list_copy = new Array;
-        state_list.forEach((item)=>{
+        state_list.forEach((item) => {
             state_list_copy.push(item);
         })
 
@@ -182,75 +183,75 @@ xl_file.addEventListener('input', (xlsxfile) => {
         add_options_state(state_list);
 
         // Function to highlight selected states
-        function state_highlight_func(){
+        function state_highlight_func() {
             let all_state = document.getElementById('all-states-opt');
             let states = document.querySelectorAll('.st-opt');
             var temp = '';
-            all_state.addEventListener('click', function(){
+            all_state.addEventListener('click', function () {
                 temp = this;
-                let t = document.querySelector('.'+temp.id);
-                if(temp.checked){
-                    states.forEach((el)=>{
-                        let hl = document.querySelector('.'+el.id);
+                let t = document.querySelector('.' + temp.id);
+                if (temp.checked) {
+                    states.forEach((el) => {
+                        let hl = document.querySelector('.' + el.id);
                         hl.style.background = "lightskyblue";
-                        hl.childNodes.forEach((e)=>{
-                            if(e.nodeName === 'I'){
+                        hl.childNodes.forEach((e) => {
+                            if (e.nodeName === 'I') {
                                 e.style.opacity = 1;
                             }
                         })
                         el.checked = true;
                     })
                     t.style.background = "lightskyblue";
-                    t.childNodes.forEach((e)=>{
-                        if(e.nodeName === 'I'){
+                    t.childNodes.forEach((e) => {
+                        if (e.nodeName === 'I') {
                             e.style.opacity = 1;
                         }
                     })
                 }
-                else{
-                    states.forEach((el)=>{
-                        let hl = document.querySelector('.'+el.id);
+                else {
+                    states.forEach((el) => {
+                        let hl = document.querySelector('.' + el.id);
                         t.style.background = "";
                         hl.style.background = "";
-                        hl.childNodes.forEach((e)=>{
-                            if(e.nodeName === 'I'){
+                        hl.childNodes.forEach((e) => {
+                            if (e.nodeName === 'I') {
                                 e.style.opacity = 0;
                             }
                         })
                         el.checked = false;
-                        t.childNodes.forEach((e)=>{
-                            if(e.nodeName === 'I'){
+                        t.childNodes.forEach((e) => {
+                            if (e.nodeName === 'I') {
                                 e.style.opacity = 0;
                             }
                         })
                     })
                 }
             })
-            states.forEach((el)=>{
-                el.addEventListener('click', function(){
-                    let t = document.querySelector('.'+temp.id);
-                    let hl = document.querySelector('.'+el.id);
-                    if(temp.checked){
+            states.forEach((el) => {
+                el.addEventListener('click', function () {
+                    let t = document.querySelector('.' + temp.id);
+                    let hl = document.querySelector('.' + el.id);
+                    if (temp.checked) {
                         t.style.background = "";
-                        t.childNodes.forEach((e)=>{
-                            if(e.nodeName === 'I'){
+                        t.childNodes.forEach((e) => {
+                            if (e.nodeName === 'I') {
                                 e.style.opacity = 0;
                             }
                         })
                         temp.checked = false;
                     }
-                    if(el.checked){
+                    if (el.checked) {
                         hl.style.background = "lightskyblue";
-                        hl.childNodes.forEach((e)=>{
-                            if(e.nodeName === 'I'){
+                        hl.childNodes.forEach((e) => {
+                            if (e.nodeName === 'I') {
                                 e.style.opacity = 1;
                             }
                         })
                     }
-                    else{
+                    else {
                         hl.style.background = "";
-                        hl.childNodes.forEach((e)=>{
-                            if(e.nodeName === 'I'){
+                        hl.childNodes.forEach((e) => {
+                            if (e.nodeName === 'I') {
                                 e.style.opacity = 0;
                             }
                         })
@@ -265,23 +266,23 @@ xl_file.addEventListener('input', (xlsxfile) => {
 })
 
 // Function to retrieve state multiselect filter.
-function state_multiselect_filter(){
+function state_multiselect_filter() {
     var st = document.querySelectorAll('.st-opt');
     var t = [];
-    st.forEach((el)=>{
-        if(el.checked){
+    st.forEach((el) => {
+        if (el.checked) {
             t.push(Number(el.id.slice(4, el.id.length)));
         }
     })
-    if(t.length>0){
+    if (t.length > 0) {
         state_list = new Array;
-        t.forEach((index)=>{
+        t.forEach((index) => {
             state_list.push(state_list_copy[index]);
         })
     }
-    else if(t.length<=0){
+    else if (t.length <= 0) {
         state_list = new Array;
-        state_list_copy.forEach((item)=>{
+        state_list_copy.forEach((item) => {
             state_list.push(item);
         })
     }
@@ -289,41 +290,41 @@ function state_multiselect_filter(){
 
 let flag = false;
 // Function to display/not-display state Dropdown menu.
-function state_options_popup(){
-    if(flag === false){
+function state_options_popup() {
+    if (flag === false) {
         state_opt.style.transform = 'scaleY(1)';
         flag = true;
     }
-    else if(flag === true){
+    else if (flag === true) {
         state_opt.style.transform = 'scaleY(0)'
         flag = false;
     }
 }
 
 let hid = true;
-function hidedropdown(){
-    if(hid === true){
+function hidedropdown() {
+    if (hid === true) {
         state_opt.style.transform = 'scaleY(0)';
         flag = false;
     }
-    else{
+    else {
         hid = true;
     }
 }
 
 // Calling dropdown display when clicked on State Filter Dropdown Button
 state_opt.style.transform = 'scaleY(0)';
-document.getElementById('toggle').addEventListener('click', ()=>{
+document.getElementById('toggle').addEventListener('click', () => {
     state_options_popup();
     hid = false;
 })
 
-state_opt.addEventListener('click', ()=>{
+state_opt.addEventListener('click', () => {
     state_opt.style.transform = 'scaleY(1)';
     hid = false;
 })
 
-document.addEventListener('click', ()=>{
+document.addEventListener('click', () => {
     hidedropdown();
 })
 
@@ -347,10 +348,10 @@ function xldate(frac) {
 
 // Function for checking if given data is AlphaNumberic
 function isAlphanumeric(str) {
-    if(str === null || str === undefined){
+    if (str === null || str === undefined) {
         return false;
     }
-    else{
+    else {
         return /^[a-zA-Z0-9]+$/.test(str);
     }
 }
@@ -427,22 +428,22 @@ function get_filter_values() {
 var table_data = document.getElementById('min-info-tb');
 var state_col = document.getElementById('state_col');
 
-function fault_data(fault_id){
+function fault_data(fault_id) {
     let tp = fault_id;
     let del = [];
     tempdata = [];
-    data_copy[colindex].forEach((col)=>{
-        if(col !== tp && col.toLowerCase().slice(0, 5) === 'tt id'){
+    data_copy[colindex].forEach((col) => {
+        if (col !== tp && col.toLowerCase().slice(0, 5) === 'tt id') {
             del.push(data_copy[0].indexOf(col));
         }
     })
     del = del.reverse();
-    data_copy.forEach((row)=>{
+    data_copy.forEach((row) => {
         let t = [];
-        row.forEach((cell)=>{
+        row.forEach((cell) => {
             t.push(cell);
         })
-        del.forEach((index)=>{
+        del.forEach((index) => {
             t.splice(index, 1);
         })
         tempdata.push(t);
@@ -450,7 +451,7 @@ function fault_data(fault_id){
 }
 
 // Function for Final Count Data Retrieval after Filter Selection and Final Click
-get_data_btn.addEventListener('click', ()=> {
+get_data_btn.addEventListener('click', () => {
     document.querySelector('.table-container').style.display = '';
 
     // Getting Values of Filter Selection and storing in variables.
@@ -608,7 +609,7 @@ get_data_btn.addEventListener('click', ()=> {
                 if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all') {
                     let c = 0;
                     data.forEach((row) => {
-                        if (row[indexofstate] === state && row[indexofphase]===phase_opt.value && row[indexofont] >= Number(ont_avl_opt.value)) {
+                        if (row[indexofstate] === state && row[indexofphase] === phase_opt.value && row[indexofont] >= Number(ont_avl_opt.value)) {
                             c++;
                         }
                     })
@@ -802,7 +803,7 @@ get_data_btn.addEventListener('click', ()=> {
                     })
                     table_data.appendChild(tr);
                 }
-                if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all'){
+                if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all') {
                     var tr = document.createElement('tr');
                     list.forEach((item) => {
                         let c = 0;
@@ -852,7 +853,7 @@ get_data_btn.addEventListener('click', ()=> {
 
             // Printing Column names based on statewise filter.
             html += "<tr>";
-            data[colindex].forEach((head)=>{
+            data[colindex].forEach((head) => {
                 html += "<th>" + head + "</th>";
             })
             html += "</tr>";
@@ -943,7 +944,7 @@ get_data_btn.addEventListener('click', ()=> {
                     }
                 })
             }
-            if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all'){
+            if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all') {
                 data_copy.forEach((row) => {
                     if (state_list[ind] === row[indexofstate] && row[indexofont] >= Number(ont_avl_opt.value) && row[indexofphase] === phase_opt.value) {
                         html += '<tr>';
@@ -963,7 +964,7 @@ get_data_btn.addEventListener('click', ()=> {
 
             // Printing columns based on fault ID filters.
             html += "<tr>";
-            tempdata[colindex].forEach((head)=>{
+            tempdata[colindex].forEach((head) => {
                 html += "<th>" + head + "</th>";
             })
             html += "</tr>";
@@ -1052,7 +1053,7 @@ get_data_btn.addEventListener('click', ()=> {
                     }
                 })
             }
-            if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all'){
+            if (ph_v !== 'all' && amc_v === 'all' && ont_v !== 'all') {
                 data_copy.forEach((row) => {
                     if (isAlphanumeric(row[n]) && state_list[cind] === row[indexofstate] && row[indexofont] >= Number(ont_avl_opt.value) && row[indexofphase] === phase_opt.value) {
                         html += '<tr>';
@@ -1069,10 +1070,10 @@ get_data_btn.addEventListener('click', ()=> {
 
     document.querySelectorAll('a').forEach((a) => {
         a.addEventListener('click', () => {
-            if(Number(a.innerHTML[0]) === 0){
+            if (Number(a.innerHTML[0]) === 0) {
                 alert("Sorry! The selected option has NO DATA. \nPlease select an option other than 0 Records.");
             }
-            else{
+            else {
                 let tab = window.open('data-view.html').document;
                 tab.write("<html>");
                 tab.write("<head><title>Data View</title><link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css'>");
