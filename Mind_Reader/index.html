@@ -17,6 +17,7 @@
 }
 
 .container-fluid{
+    text-align: center;
     background-color: black;
     height: 100vh;
     display: flex;
@@ -40,6 +41,7 @@
 .content-box .display-content{
     display: flex;
     align-items: center;
+    padding: 0 20px;
     max-width: 100%;
     width: fit-content;
     height: fit-content;
@@ -87,23 +89,15 @@
 
 .buttons button{
     color: white;
+    padding: 0 25px;
     width: fit-content;
     border-radius: 20px;
     background: transparent;
     border: 2px solid white;
-    text-align: center;
     transition: 0.3s all ease-in-out;
 
     box-shadow: 0px 0px 6px aqua, 0px 0px 6px aqua inset;
     text-shadow: 0 0 10px aqua, 0 0 5px aqua, 0 0 3px aqua;
-}
-
-.buttons .backsteps{
-    width: 85px;
-}
-
-.buttons button .button-value{
-    padding: 0 25px;
 }
 
 .buttons button:hover{
@@ -122,9 +116,7 @@
             </div>
             <div class="buttons">
                 <button class="backsteps">Back</button>
-                <button class="steps">
-                    <div class="button-value">Start</div>
-                </button>
+                <button class="steps">Start</button>
             </div>
         </div>
     </div>
@@ -132,7 +124,6 @@
 
 <script>
     let step = document.querySelector(".steps");
-    let st_bt_value = document.querySelector(".button-value");
     let backstep = document.querySelector(".backsteps");
     let content = document.querySelector(".content");
     let ld = document.querySelector(".loader");
@@ -151,14 +142,14 @@
 
     let c = 0;
     step.addEventListener('click', () => {
-        if (st_bt_value.innerHTML === "Play Again!") {
+        if (step.innerHTML === "Play Again!") {
             content.innerHTML = temp;
-            st_bt_value.innerHTML = "Start";
+            step.innerHTML = "Start";
             return;
         }
 
         if (c < clist.length) {
-            st_bt_value.innerHTML = "Next";
+            step.innerHTML = "Next";
             backstep.style.display = '';
             content.innerHTML = clist[c];
             c++;
@@ -178,7 +169,7 @@
                     content.innerHTML = "The answer in your mind is 18 - Eighteen";
                     ld.style.display = 'none';
                     step.style.display = '';
-                    st_bt_value.innerHTML = "Play Again!";
+                    step.innerHTML = "Play Again!";
                     c = 0;
                     clearInterval(t);
                 }
@@ -190,7 +181,7 @@
     backstep.addEventListener('click', () => {
         c--;
         if (c === 0) {
-            st_bt_value.innerHTML = "Start";
+            step.innerHTML = "Start";
             content.innerHTML = temp;
             backstep.style.display = 'none';
         }
