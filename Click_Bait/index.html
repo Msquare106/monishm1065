@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Me</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Poppins;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        background: rgb(0, 0, 53);
+    }
+
+    .container button{
+        font-style: italic;
+        color: aqua;
+        border-radius: 25px;
+        padding: 10px 40px;
+        border: 2px solid aqua;
+        background: none;
+        outline: none;
+        transition: all 0.1s ease-in-out;
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 5px aqua inset, 0 0 10px aqua inset;
+        text-shadow: 0 0 5px aqua, 0 0 10px aqua;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="container">
+        <button>Click Me</button>
+    </div>
+</body>
+<script>
+    function rand(array){
+        const randomIndex = Math.floor(Math.random() * array.length);
+        return array[randomIndex]
+    }
+    let btn = document.querySelector("button");
+    btn.addEventListener("mouseenter", ()=>{
+        let m = ["translate(0%, 100%)", "translate(100%, 0%)", "translate(100%, 100%)", "translate(-100%, 0%)", "translate(0%, -100%)",
+        "translate(-100%, -100%)", "translate(-100%, 100%)", "translate(100%, -100%)"]
+        const randomIndex = Math.floor(Math.random() * m.length);
+        let c = rand(m)
+        if (c != btn.style.transform){
+            btn.style.transform = c;
+        }
+        else{
+            c = rand(m);
+            btn.style.transform = c;
+        }
+    })
+</script>
+</html>
