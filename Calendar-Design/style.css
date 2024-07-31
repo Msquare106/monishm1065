@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+.container{
+    color: white;
+    text-shadow: 1px 1px 1px aqua, 0px 0px 4px aqua;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(0, 0, 50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .calendar{
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 5px aqua inset, 0 0 10px aqua inset;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar .title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    font-weight: 500;
+    background: rgba(0, 255, 255, 0.205);
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid white;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 5px aqua inset, 0 0 10px aqua inset;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.calendar .weekdays,
+.calendar .days{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: calc(120px * 7);
+}
+
+.calendar .weekdays div,
+.calendar .days div{
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background: rgba(0, 255, 255, 0.205);
+    border-radius: 10px;
+    border: 2px solid white;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 5px aqua inset, 0 0 10px aqua inset;
+}
