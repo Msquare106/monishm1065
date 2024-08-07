@@ -1,0 +1,480 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.container #reload{
+    position: absolute;
+    right: 200px;
+    bottom: 100px;
+    border: 2px solid white;
+    background: none;
+    outline: none;
+    color: white;
+    padding: 10px;
+    font-style: italic;
+    border-radius: 25px 5px;
+    font-size: 18px;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset, 0 0 5px aqua inset;
+    text-shadow: 0 0 10px chartreuse, 0 0 5px chartreuse, 0 0 2px chartreuse, 0 0 15px chartreuse;
+    cursor: pointer;
+    transition: 0.3s ease-in-out all;
+}
+
+.container #reload:hover{
+    transform: scale(.92);
+    text-shadow: 0 0 10px hotpink, 0 0 5px hotpink, 0 0 2px hotpink, 0 0 15px hotpink;
+}
+
+.container .clock-container{
+    position: relative;
+}
+
+.container .clock-container .border-circle{
+    position: absolute;
+    border-radius: 50%;
+    inset: 12px;
+    border: 3px solid white;
+    z-index: 2;
+    opacity: 0;
+
+    animation: clock_outline_border 5s ease-in-out 0s 1 forwards;
+}
+
+@keyframes clock_outline_border{
+    0%{
+        opacity: 0;
+        box-shadow: none;
+    }
+    25%{
+        opacity: 1;
+        box-shadow: none;
+    }
+    50%{
+        opacity: 0.5;
+        box-shadow: 0 0 1px aqua, 0 0 2px aqua, 0 0 4px aqua inset;
+    }
+    75%{
+        opacity: 0;
+        box-shadow: 0 0 2px aqua, 0 0 4px aqua, 0 0 6px aqua inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset, 0 0 5px aqua inset;
+    }
+}
+
+.container .clock-container .mid-circle{
+    position: absolute;
+    border-radius: 50%;
+    inset: 48%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 15px aqua, 0 0 10px aqua inset, 0 0 5px aqua inset;
+    background: white;
+    z-index: 2;
+    transform: scale(0);
+
+    animation: starter 2s ease-in-out 0s 1 forwards;
+}
+
+@keyframes starter{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.container .clock-container .date-time{
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    border-radius: 50%;
+    inset: 30%;
+    border: 2px solid white;
+    z-index: 0;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+
+    animation: date_time 3s ease-in-out 18s 1 forwards;
+}
+
+@keyframes date_time{
+    0%{
+        opacity: 0;
+    }
+    25%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.2;
+    }
+    75%{
+        opacity: 1;
+        box-shadow: 0 0 1px aqua, 0 0 3px aqua, 0 0 6px aqua, 0 0 3px aqua inset, 0 0 1px aqua inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 15px aqua, 0 0 10px aqua inset, 0 0 5px aqua inset;
+        z-index: 0;
+    }
+}
+
+.container .clock-container .date-time i{
+    text-shadow: 0 0 10px chartreuse, 0 0 5px chartreuse, 0 0 2px chartreuse, 0 0 15px chartreuse;
+    margin: 35px 0;
+    font-size: 17px;
+}
+
+.container .clock-container .date-border{
+    opacity: 0;
+    position: absolute;
+    inset: 32%;
+    border-radius: 50%;
+    border: 2px solid white;
+
+    animation: date_time_border 3s ease-in-out 18s 1 forwards;
+}
+
+@keyframes date_time_border{
+    0%{
+        opacity: 0;
+    }
+    25%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.2;
+    }
+    75%{
+        opacity: 1;
+        box-shadow: 0 0 1px chartreuse, 0 0 3px chartreuse, 0 0 6px chartreuse, 0 0 3px chartreuse inset, 0 0 1px chartreuse inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px chartreuse, 0 0 10px chartreuse, 0 0 15px chartreuse, 0 0 10px chartreuse inset, 0 0 5px chartreuse inset;
+    }
+}
+
+.container .clock-circle{
+    width: 600px;
+    height: 600px;
+    position: relative;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset;
+    z-index: 1;
+
+    animation: clock_outline 5s ease-in-out 0s 1 forwards;
+}
+
+@keyframes clock_outline{
+    0%{
+        opacity: 0;
+        box-shadow: none;
+    }
+    25%{
+        opacity: 1;
+        box-shadow: none;
+    }
+    50%{
+        opacity: 0.5;
+        box-shadow: 0 0 1px aqua, 0 0 2px aqua, 0 0 4px aqua inset;
+    }
+    75%{
+        opacity: 0;
+        box-shadow: 0 0 2px aqua, 0 0 4px aqua, 0 0 6px aqua inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset, 0 0 15px aqua;
+    }
+}
+
+.container .clock-container .inner-circle{
+    position: absolute;
+    inset: 17.5%;
+    border: 5px white solid;
+    border-radius: 50%;
+    z-index: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    opacity: 0;
+
+    animation: inner_circle 5s ease-in-out 6s 1 forwards;
+}
+
+@keyframes inner_circle{
+    0%{
+        opacity: 0;
+    }
+    25%{
+        opacity: 1;
+        box-shadow: 0 0 1px aqua, 0 0 2px aqua, 0 0 5px aqua, 0 0 2px aqua inset, 0 0 1px aqua inset;
+    }
+    50%{
+        opacity: 0;
+        box-shadow: 0 0 2px aqua, 0 0 3px aqua, 0 0 8px aqua, 0 0 3px aqua inset, 0 0 2px aqua inset;
+    }
+    75%{
+        opacity: 1;
+        box-shadow: 0 0 3px aqua, 0 0 5px aqua, 0 0 10px aqua, 0 0 5px aqua inset, 0 0 3px aqua inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 15px aqua, 0 0 10px aqua inset, 0 0 5px aqua inset;
+    }
+}
+
+.container .clock-container .inner-circle i:nth-child(1){
+    margin: 15px 0;
+    font-size: 42px;
+    opacity: 0;
+
+    animation: logo 3s ease-in-out 21s 1 forwards;
+}
+
+.container .clock-container .inner-circle i:nth-child(2){
+    margin-bottom: 25px;
+    font-size: 18px;
+    opacity: 0;
+
+    animation: logo 3s ease-in-out 21s 1 forwards;
+}
+
+@keyframes logo{
+    0%{
+        opacity: 0;
+    }
+    25%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+        text-shadow: 0 0 2px yellow, 0 0 1px yellow, 0 0 6px orange;
+    }
+    75%{
+        opacity: 1;
+        text-shadow: 0 0 4px yellow, 0 0 3px yellow, 0 0 2px yellow, 0 0 8px orange;
+    }
+    100%{
+        opacity: 1;
+        text-shadow: 0 0 10px yellow, 0 0 5px yellow, 0 0 2px yellow, 0 0 15px orange;
+    }
+}
+
+.container .clock-container .lines{
+    position: absolute;
+    inset: 0;
+}
+
+.container .clock-container .lines .line{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    inset: 80px;
+    transform: rotate(calc(6deg * var(--j)));
+
+    animation: align_lines 5s ease-in-out 13s 1 forwards;
+}
+
+@keyframes align_lines{
+    0%{
+        opacity: 0;
+        transform: rotate(calc(var(--j) * 0deg));
+    }
+    75%{
+        opacity: 1;
+        transform: rotate(calc(var(--j) * 6deg));
+    }
+    100%{
+        opacity: 1;
+        transform: rotate(calc(var(--j) * 6deg));
+    }
+}
+
+.container .clock-container .lines .h-line{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    inset: 65px;
+    transform: rotate(calc(6deg * var(--j)));
+}
+
+.container .clock-container .lines .h-line div{
+    width: 6px;
+    height: 45px;
+    background: white;
+    border-radius: 50% 50%;
+    transform-origin: bottom;
+    opacity: 0;
+
+    animation: h_lines 3s ease-in-out 10s 1 forwards;
+}
+
+@keyframes h_lines{
+    0%{
+        opacity: 0;
+        transform: scaleY(0);
+        box-shadow: 0 0 1px aqua, 0 0 5px aqua, 0 0 8px aqua;
+    }
+    100%{
+        opacity: 1;
+        transform: scaleY(1);
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 15px aqua;
+    }
+}
+
+.container .clock-container .lines .line div{
+    width: 4px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+
+    animation: lines 3s ease-in-out 13s 1 forwards;
+}
+
+@keyframes lines{
+    0%{
+        opacity: 0;
+        transform: scaleY(0);
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua;
+    }
+    100%{
+        opacity: 1;
+        transform: scaleY(1);
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua;
+    }
+}
+
+.clock-circle .seconds{
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 65px;
+    width: 2px;
+    height: 230px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px white, 0 0 10px white, 0 0 10px white inset;
+    transform-origin: bottom;
+    z-index: 3;
+    transform: rotate(95deg);
+    opacity: 0;
+
+    animation: needle_glow_sec 3s ease-in-out 3s 1 forwards;
+}
+
+@keyframes needle_glow_sec{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+        box-shadow: 0 0 1px white, 0 0 2px white, 0 0 4px white inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px white, 0 0 10px white, 0 0 10px white inset;
+    }
+}
+
+.clock-circle .mins{
+    position: absolute;
+    left: calc(50% - 2.5px);
+    top: 55px;
+    width: 5px;
+    height: 240px;
+    background: white;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset;
+    transform-origin: bottom;
+    z-index: 2;
+    transform: rotate(60deg);
+    opacity: 0;
+
+    animation: needle_glow 3s ease-in-out 3s 1 forwards;
+}
+
+.clock-circle .hours{
+    position: absolute;
+    left: calc(50% - 4px);
+    top: 115px;
+    width: 8px;
+    height: 180px;
+    background: white;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset;
+    transform-origin: bottom;
+    z-index: 2;
+    transform: rotate(30deg);
+    opacity: 0;
+
+    animation: needle_glow 3s ease-in-out 3s 1 forwards;
+}
+
+@keyframes needle_glow{
+    0%{
+        opacity: 0;
+        
+    }
+    50%{
+        opacity: 0.5;
+        box-shadow: 0 0 1px aqua, 0 0 2px aqua, 0 0 4px aqua inset;
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 10px aqua inset;
+    }
+}
+
+.clock-circle .hh{
+    text-align: center;
+    color: white;
+    position: absolute;
+    font-size: 32px;
+    font-style: italic;
+    inset: 10px;
+    opacity: 0;
+
+    animation: number_fx 5s ease-in-out 5s 1 forwards;
+}
+
+@keyframes number_fx{
+    0%{
+        opacity: 0;
+        transform: rotate(calc(var(--i) * 0deg));
+    }
+    75%{
+        opacity: 1;
+        transform: rotate(calc(var(--i) * 30deg));
+    }
+    100%{
+        opacity: 1;
+        transform: rotate(calc(var(--i) * 30deg));
+        text-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 15px aqua;
+    }
+}
+
+.clock-circle .hh i{
+    display: inline-block;
+    transform: rotate(calc(-30deg * var(--i)));
+}
