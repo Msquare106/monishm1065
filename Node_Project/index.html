@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+</head>
+<body>
+    <h1>Download Video</h1>
+    <form id="downloadForm" action="/download" method="get">
+        <label for="url">Video URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Download</button>
+    </form>
+    <p id="responseMessage"></p>
+
+    <script>
+        const form = document.getElementById('downloadForm');
+        const responseMessage = document.getElementById('responseMessage');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const url = document.getElementById('url').value;
+
+            try {
+                const response = await fetch(`/download?url=${encodeURIComponent(url)}`);
+                if (response.ok) {
+                    const message = await response.text();
+                    responseMessage.textContent = message;
+                } else {
+                    const error = await response.text();
+                    responseMessage.textContent = `Error: ${error}`;
+                }
+            } catch (err) {
+                responseMessage.textContent = `Request failed: ${err.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
