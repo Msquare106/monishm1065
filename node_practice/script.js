@@ -4,4 +4,4 @@ let i = 0;
 function updatetime(){
     time.innerHTML = i++;
 }
-setInterval(updatetime, 1000);
+setInterval(updatetime, 2000);
