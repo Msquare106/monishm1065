@@ -4,4 +4,4 @@ let dt = new Date();
 function updatetime(){
     time.innerHTML = dt.toLocaleTimeString();
 }
-setInterval(updatetime, 1000);
+setInterval(updatetime(), 1000);
