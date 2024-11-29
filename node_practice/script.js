@@ -1,7 +1,7 @@
 let time = document.querySelector(".container");
 let dt = new Date();
-let i = 0;
+
 function updatetime(){
-    time.innerHTML = i++;
+    time.innerHTML = dt.toLocaleTimeString();
 }
-setInterval(updatetime, 2000);
+setInterval(updatetime, 1000);
