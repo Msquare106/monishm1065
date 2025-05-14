@@ -157,7 +157,7 @@
 }
 .main-container .flame-container .flame{
     font-style: italic;
-    /* width: 90px; */
+    width: 90px;
     text-align: center;
     transform-origin: left;
     transition: all 0.3s ease-in-out;
