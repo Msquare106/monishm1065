@@ -157,7 +157,7 @@
 }
 .main-container .flame-container .flame{
     font-style: italic;
-    /* width: 90px; */
+    width: 90px;
     text-align: center;
     transform-origin: left;
     transition: all 0.3s ease-in-out;
@@ -198,26 +198,32 @@
     }
 }
 
-@media (max-width: 378px) {
+@media (max-width: 600px) {
     .content-container header{
         font-size: 18px;
     }
 
     .main-container .flame-container .flame{
-        width: 45px;
+        width: 36px;
         padding: 5px 10px;
-        font-size: 24px;
+        font-size: 18px;
+    }
+
+    .main-container .flame-container .definition{
+        left: 55px;
+        padding: 5px 10px;
+        font-size: 18px;
     }
 
     .input-container .inputs label,
     .input-container .inputs input{
         padding: 3px 6px;
-        font-size: 14px;
+        font-size: 12px;
         font-style: italic;
     }
 
     .input-container .inputs input::placeholder{
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .input-container .inputs label{
@@ -235,25 +241,6 @@
     }
 
     .content-container a{
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 320px) {
-    .main-container .flame-container .flame{
-        width: 36px;
-        padding: 5px 10px;
-        font-size: 18px;
-    }
-
-    .input-container .inputs label,
-    .input-container .inputs input{
-        padding: 3px 6px;
-        font-size: 12px;
-        font-style: italic;
-    }
-
-    .input-container .inputs input::placeholder{
         font-size: 12px;
     }
 }
