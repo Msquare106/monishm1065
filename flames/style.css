@@ -198,7 +198,7 @@
     }
 }
 
-@media (max-width: 378px) {
+@media (max-width: 600px) {
     .content-container header{
         font-size: 18px;
     }
@@ -239,7 +239,7 @@
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 378px) {
     .main-container .flame-container .flame{
         width: 36px;
         padding: 5px 10px;
