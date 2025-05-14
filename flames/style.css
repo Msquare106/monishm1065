@@ -198,13 +198,18 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 378px) {
     .content-container header{
         font-size: 18px;
     }
 
     .main-container .flame-container .flame{
         width: 45px;
+        padding: 5px 10px;
+        font-size: 24px;
+    }
+
+    .main-container .flame-container .definition{
         padding: 5px 10px;
         font-size: 24px;
     }
@@ -239,9 +244,14 @@
     }
 }
 
-@media (max-width: 378px) {
+@media (max-width: 320px) {
     .main-container .flame-container .flame{
         width: 36px;
+        padding: 5px 10px;
+        font-size: 18px;
+    }
+
+    .main-container .flame-container .definition{
         padding: 5px 10px;
         font-size: 18px;
     }
