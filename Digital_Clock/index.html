@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="clock-box">
+            <div class="metric-box hours" id="hour_1">
+                <div class="div_0">0</div>
+                <div class="div_1">1</div>
+                <div class="div_2">2</div>
+            </div>
+            <div class="metric-box hours" id="hour_2">
+                <div class="div_0">0</div>
+                <div class="div_1">1</div>
+                <div class="div_2">2</div>
+                <div class="div_3">3</div>
+                <div class="div_4">4</div>
+                <div class="div_5">5</div>
+                <div class="div_6">6</div>
+                <div class="div_7">7</div>
+                <div class="div_8">8</div>
+                <div class="div_9">9</div>
+            </div>
+            <div class="split"></div>
+            <div class="metric-box minutes" id="min_1">
+                <div class="div_0">0</div>
+                <div class="div_1">1</div>
+                <div class="div_2">2</div>
+                <div class="div_3">3</div>
+                <div class="div_4">4</div>
+                <div class="div_5">5</div>
+            </div>
+            <div class="metric-box minutes" id="min_2">
+                <div class="div_0">0</div>
+                <div class="div_1">1</div>
+                <div class="div_2">2</div>
+                <div class="div_3">3</div>
+                <div class="div_4">4</div>
+                <div class="div_5">5</div>
+                <div class="div_6">6</div>
+                <div class="div_7">7</div>
+                <div class="div_8">8</div>
+                <div class="div_9">9</div>
+            </div>
+            <div class="split"></div>
+            <div class="metric-box seconds" id="sec_1">
+                <div class="div_0">0</div>
+                <div class="div_1">1</div>
+                <div class="div_2">2</div>
+                <div class="div_3">3</div>
+                <div class="div_4">4</div>
+                <div class="div_5">5</div>
+            </div>
+            <div class="metric-box seconds" id="sec_2">
+                <div class="div_0">0</div>
+                <div class="div_1">1</div>
+                <div class="div_2">2</div>
+                <div class="div_3">3</div>
+                <div class="div_4">4</div>
+                <div class="div_5">5</div>
+                <div class="div_6">6</div>
+                <div class="div_7">7</div>
+                <div class="div_8">8</div>
+                <div class="div_9">9</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let clock_box_metrics_ids = ["hour_1", "hour_2", "min_1", "min_2", "sec_1", "sec_2"];
+    function update_clock(clock_box_metrics_ids){
+        let now = new Date();
+        let time_string = String(now.getHours()).padStart(2, "0") + String(now.getMinutes()).padStart(2, "0") + String(now.getSeconds()).padStart(2, "0");
+        for(let i=0; i < clock_box_metrics_ids.length; i++){
+            document.getElementById(clock_box_metrics_ids[i]).style.setProperty("--pix", `${time_string[i]*190}px`);
+        }
+    }
+
+    setInterval(()=>{
+        update_clock(clock_box_metrics_ids);
+    }, 1000);
+</script>
+</html>
