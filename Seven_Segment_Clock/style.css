@@ -1,0 +1,217 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.main-container{
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container .clock-container{
+    display: flex;
+    column-gap: 50px;
+    border: 3px solid white;
+    padding: 10px 30px;
+    box-shadow: 0 0 5px 1px hotpink, 0 0 10px 1px hotpink, 0 0 15px 1px hotpink, 0 0 5px 1px hotpink inset, 0 0 10px 1px hotpink inset, 0 0 15px 1px hotpink inset;
+    animation: container_anim 1s ease-in-out 0s infinite;
+}
+
+.main-container .clock-container .splitter{
+    color: white;
+    font-size: 168px;
+    line-height: 1.5em;
+    transform: skewX(-6deg);
+    text-shadow: 0 0 4px hotpink, 0 0 8px hotpink, 0 0 12px hotpink, 0 0 16px hotpink;
+    /* border: 1px solid green; */
+    text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    animation: splitter_shadow 1s ease-in-out 0s infinite;
+}
+
+.main-container .clock-container .metric-box{
+    display: flex;
+    /* border: 1px solid blue; */
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container .clock-container .metric-box .number-box{
+    width: 180px;
+    height: 300px;
+    /* border: 1px solid white; */
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    transform: skewX(-6deg);
+}
+
+.main-container .number-box .segment-container{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid hotpink; */
+}
+
+.main-container .number-box .segment-container div{
+    position: relative;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    box-shadow: 0 0 3px hotpink, 0 0 6px hotpink, 0 0 9px hotpink, 0 0 12px hotpink;
+    opacity: 0;
+
+    transition: 0.4s ease-in-out all;
+    animation: container_anim 1s ease-in-out 0s infinite;
+}
+
+.main-container .number-box .mid-line div,
+.main-container .number-box .bottom-line div,
+.main-container .number-box .top-line div{
+    width: calc(100% - 30px);
+}
+
+.main-container .number-box .top-side-lines,
+.main-container .number-box .bottom-side-lines{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.main-container .number-box .top-side-lines div,
+.main-container .number-box .bottom-side-lines div{
+    height: calc(100% - 10px);
+}
+
+@keyframes container_anim{
+    0%{
+        box-shadow: 0 0 5px 1px violet, 0 0 10px 1px violet, 0 0 15px 1px violet, 0 0 5px 1px violet inset, 0 0 10px 1px violet inset, 0 0 15px 1px violet inset;
+    }
+    15%{
+        box-shadow: 0 0 5px 1px indigo, 0 0 10px 1px indigo, 0 0 15px 1px indigo, 0 0 5px 1px indigo inset, 0 0 10px 1px indigo inset, 0 0 15px 1px indigo inset;
+    }
+    30%{
+        box-shadow: 0 0 5px 1px blue, 0 0 10px 1px blue, 0 0 15px 1px blue, 0 0 5px 1px blue inset, 0 0 10px 1px blue inset, 0 0 15px 1px blue inset;
+    }
+    45%{
+        box-shadow: 0 0 5px 1px green, 0 0 10px 1px green, 0 0 15px 1px green, 0 0 5px 1px green inset, 0 0 10px 1px green inset, 0 0 15px 1px green inset;
+    }
+    60%{
+        box-shadow: 0 0 5px 1px yellow, 0 0 10px 1px yellow, 0 0 15px 1px yellow, 0 0 5px 1px yellow inset, 0 0 10px 1px yellow inset, 0 0 15px 1px yellow inset;
+    }
+    75%{
+        box-shadow: 0 0 5px 1px orange, 0 0 10px 1px orange, 0 0 15px 1px orange, 0 0 5px 1px orange inset, 0 0 10px 1px orange inset, 0 0 15px 1px orange inset;
+    }
+    90%{
+        box-shadow: 0 0 5px 1px red, 0 0 10px 1px red, 0 0 15px 1px red, 0 0 5px 1px red inset, 0 0 10px 1px red inset, 0 0 15px 1px red inset;
+    }
+    100%{
+        box-shadow: 0 0 5px 1px violet, 0 0 10px 1px violet, 0 0 15px 1px violet, 0 0 5px 1px violet inset, 0 0 10px 1px violet inset, 0 0 15px 1px violet inset;
+    }
+}
+
+@keyframes splitter_shadow{
+    0%{
+        text-shadow: 0 0 4px violet, 0 0 8px violet, 0 0 12px violet, 0 0 16px violet;
+    }
+    15%{
+        text-shadow: 0 0 4px indigo, 0 0 8px indigo, 0 0 12px indigo, 0 0 16px indigo;
+    }
+    30%{
+        text-shadow: 0 0 4px blue, 0 0 8px blue, 0 0 12px blue, 0 0 16px blue;
+    }
+    45%{
+        text-shadow: 0 0 4px green, 0 0 8px green, 0 0 12px green, 0 0 16px green;
+    }
+    60%{
+        text-shadow: 0 0 4px yellow, 0 0 8px yellow, 0 0 12px yellow, 0 0 16px yellow;
+    }
+    75%{
+        text-shadow: 0 0 4px orange, 0 0 8px orange, 0 0 12px orange, 0 0 16px orange;
+    }
+    90%{
+        text-shadow: 0 0 4px red, 0 0 8px red, 0 0 12px red, 0 0 16px red;
+    }
+    100%{
+        text-shadow: 0 0 4px violet, 0 0 8px violet, 0 0 12px violet, 0 0 16px violet;
+    }
+}
+
+@media (max-width: 1425px){
+    .main-container .clock-container .metric-box .number-box{
+        width: 140px;
+        height: 220px;
+    }
+
+    .main-container .clock-container .splitter{
+        font-size: 118px;
+        line-height: 1.5em;
+    }
+}
+
+@media (max-width: 1165px){
+    .main-container .clock-container{
+        column-gap: 30px;
+        padding: 10px 20px;
+    }
+
+    .main-container .clock-container .metric-box .number-box{
+        width: 120px;
+        height: 190px;
+    }
+
+    .main-container .clock-container .splitter{
+        font-size: 108px;
+        line-height: 1.4em;
+    }
+}
+
+@media (max-width: 940px){
+    .main-container .clock-container{
+        column-gap: 25px;
+        padding: 10px 15px;
+    }
+
+    .main-container .clock-container .metric-box .number-box{
+        width: 100px;
+        height: 160px;
+    }
+
+    .main-container .number-box .segment-container div{
+        border: 4px solid white;
+    }
+
+    .main-container .clock-container .splitter{
+        font-size: 88px;
+        line-height: 1.5em;
+    }
+}
+
+@media (max-width: 782px){
+    .main-container .clock-container{
+        column-gap: 10px;
+        padding: 10px;
+    }
+
+    .main-container .clock-container .metric-box .number-box{
+        width: 80px;
+        height: 140px;
+    }
+
+    .main-container .number-box .segment-container div{
+        border: 3px solid white;
+    }
+
+    .main-container .clock-container .splitter{
+        font-size: 68px;
+        line-height: 1.7em;
+    }
+}
