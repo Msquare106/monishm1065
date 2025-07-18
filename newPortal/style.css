@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --bg_blend_1: rgb(0, 44, 94);
+    --bg_blend_2: rgba(0, 255, 255, 0.296);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+}
+
+.main-container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(180deg, var(--bg_blend_1), var(--bg_blend_2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container .sign-in-box{
+    width: 800px;
+    height: 500px;
+    border: 2px solid rgba(255, 255, 255, 0.247);
+    border-radius: 25px;
+    box-shadow: 0 16px 32px 3px rgba(0, 0, 0, 0.679);
+    background: rgb(0, 64, 112);
+
+    padding: 10px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.main-container .sign-in-box .content-box{
+    border-radius: 15px;
+}
+
+.main-container .sign-in-box .sign-in-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 35px;
+}
+
+.sign-in-content .sign-in-sub-container{
+    width: fit-content;
+    padding: 10px;
+}
+
+.sign-in-content .sign-in-sub-container header{
+    font-size: 32px;
+    font-weight: 550;
+    color: white;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+}
+
+.sign-in-content .sign-in-sub-container .input-container{
+    color: white;
+}
+
+.sign-in-sub-container .input-container label{
+    font-size: 15px;
+    font-style: italic;
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+}
+
+.sign-in-sub-container .input-container .inputs{
+    margin-top: 2px;
+    margin-bottom: 20px;
+    background: rgb(0, 39, 75);
+    border: 1px solid rgba(255, 255, 255, 0.234);
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.sign-in-sub-container .input-container .inputs input{
+    font-size: 16px;
+    background: none;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    margin-right: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.sign-in-sub-container .input-container .password-input{
+    padding: 4px;
+    padding-left: 8px;
+}
+
+.sign-in-sub-container .input-container .password-input input{
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.sign-in-sub-container .input-container .password-input input[type="password"]::-ms-reveal{
+    display: none;
+}
+
+.sign-in-sub-container .input-container .password-input .eye-icon{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.input-container .password-input .eye-icon i{
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    transition: all 0.2s ease-in-out;
+    filter: drop-shadow(0 0 8px rgb(0, 0, 0));
+}
+
+.input-container .password-input .eye-icon .fa-eye-slash{
+    opacity: 0;
+    left: 4px;
+}
+
+.sign-in-content .sign-in-sub-container .input-container button{
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: 550;
+    color: white;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.292), rgba(255, 255, 255, 0.319));
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 5px;
+    filter: drop-shadow(0 8px 15px rgb(0, 0, 0));
+    text-shadow: 0 5px 10px rgb(0, 0, 0);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.sign-in-content .sign-in-sub-container .input-container button:hover{
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.366), rgba(255, 255, 255, 0.415));
+}
+
+.sign-in-content .sign-in-sub-container .input-container button:active{
+    transform: scaleX(.98);
+    transition: none;
+}
+
+.main-container .sign-in-box .side-content{
+    border: 1px solid rgba(255, 255, 255, 0.122);
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.619);
+    background: rgb(31, 31, 31);
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+}
+
+.main-container .sign-in-box .side-content .side-content-sub-container{
+    color: white;
+    font-size: 32px;
+    font-weight: 550;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.main-container .sign-in-box .side-content .wifi-symbol{
+    width: 200px;
+    height: 200px;
+    display: grid;
+    filter: drop-shadow(0 0 3px aqua) drop-shadow(0 0 6px aqua) drop-shadow(0 0 9px aqua);
+}
+
+.sign-in-box .side-content .wifi-symbol .third-wave,
+.side-content .wifi-symbol .second-wave,
+.side-content .wifi-symbol .first-wave{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 10px solid transparent;
+    /* border-top: 10px solid white; */
+    padding: 20px;
+
+    animation: wifi_fx 1s ease-in-out var(--delay) infinite;
+}
+
+.side-content .wifi-symbol .first-wave{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-content .wifi-symbol .dot{
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.sign-in-box .side-content .wifi-symbol div{
+    border-radius: 50%;
+}
+
+@keyframes wifi_fx{
+    0%, 50%{
+        border-top-color: rgba(255, 255, 255, 0.116);
+    }
+    100%{
+        border-top-color: white;
+    }
+}
+
+.main-container .sign-in-box .side-content footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: grey;
+    margin-bottom: 10px;
+}
+
+.sign-in-box .side-content footer img{
+    width: 25px;
+    margin-right: 5px;
+}

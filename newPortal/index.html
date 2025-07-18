@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Server</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sign_in_media_query.css">
+    <script src="https://kit.fontawesome.com/0f5c8d4e4a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="sign-in-box">
+            <div class="sign-in-content content-box">
+                <div class="sign-in-sub-container">
+                    <header>Sign In</header>
+                    <div class="input-container">
+                        <label for="user_id_input">Your User ID</label>
+                        <div class="user-id-input inputs">
+                            <input type="text" name="" id="user_id_input">
+                        </div>
+                        <label for="password_input">Password</label>
+                        <div class="password-input inputs">
+                            <input type="password" name="" id="password_input">
+                            <div class="eye-icon" id="eye_icon">
+                                <i class="fa-solid fa-eye"></i>
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </div>
+                        </div>
+                        <button name="">Sign In</button>
+                    </div>
+                </div>
+            </div>
+            <div class="side-content content-box">
+                <div class="side-content-sub-container" id="side_contents">
+                    <div class="greeting"></div>
+                    <div class="curr-time"></div>
+                </div>
+                <div class="wifi-symbol">
+                    <div class="third-wave" style="--delay:0.9s;">
+                        <div class="second-wave" style="--delay:0.6s;">
+                            <div class="first-wave" style="--delay:0.3s;">
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <img src="favicon.png" alt="" title="Bharat Broadband Network Limited">
+                    <p>Bharat Broadband Network Limited.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+let side_contents = document.getElementById("side_contents");
+update_time();
+setInterval(update_time, 1000);
+function update_time(){
+    let time = new Date().toLocaleTimeString("en-US", { hour12: true, hour24: false }).padStart(11, "0");
+    side_contents.querySelector(".curr-time").innerHTML = time.slice(0, 5) + time.slice(8, 11);
+    greet(new Date());
+}
+
+function greet(date_constructor){
+    let greetings = ["Good Morning", "Good Afternoon", "Good Evening", "Greetings"];
+    let hour = date_constructor.getHours();
+    if(hour >= 5 && hour < 12){
+        side_contents.querySelector(".greeting").innerHTML = greetings[0];
+    }else if(hour >= 12 && hour < 17){
+        side_contents.querySelector(".greeting").innerHTML = greetings[1];
+    }else if(hour >= 17 && hour < 21){
+        side_contents.querySelector(".greeting").innerHTML = greetings[2];
+    }else{
+        side_contents.querySelector(".greeting").innerHTML = greetings[3];
+    }
+}
+
+let eye_icon = document.getElementById("eye_icon");
+let password_input = document.getElementById("password_input");
+eye_icon.addEventListener('click', ()=>{
+    if(password_input.type === 'password'){
+        eye_icon.querySelector(".fa-eye").style.opacity = 0;
+        eye_icon.querySelector(".fa-eye-slash").style.opacity = 1;
+        password_input.type = 'text';
+    }else{
+        eye_icon.querySelector(".fa-eye").style.opacity = 1;
+        eye_icon.querySelector(".fa-eye-slash").style.opacity = 0;
+        password_input.type = 'password';
+    }
+})
+</script>
+</html>

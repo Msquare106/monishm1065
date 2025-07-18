@@ -1,0 +1,95 @@
+@media (max-width: 600px){
+    .main-container .sign-in-box{
+        width: 400px;
+        height: fit-content;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-container .sign-in-box .sign-in-content{
+        padding: 0 10px;
+        margin-bottom: 10px;
+    }
+
+    .sign-in-content .sign-in-sub-container header{
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    .sign-in-sub-container .input-container label{
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .sign-in-sub-container .input-container .inputs{
+        margin-top: 1px;
+        margin-bottom: 10px;
+        padding: 6px;
+    }
+
+    .sign-in-sub-container .input-container .inputs input{
+        font-size: 14px;
+    }   
+
+    .sign-in-sub-container .input-container .password-input{
+        padding: 2px;
+        padding-left: 6px;
+    }
+
+    .sign-in-sub-container .input-container .password-input .eye-icon{
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .input-container .password-input .eye-icon i{
+        top: 4px;
+        left: 2px;
+    }
+
+    .input-container .password-input .eye-icon .fa-eye-slash{
+        left: 1px;
+    }
+
+    .main-container .sign-in-box .side-content{
+        position: relative;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        overflow: hidden;
+    }
+
+    .main-container .sign-in-box .side-content .side-content-sub-container{
+        color: white;
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .main-container .sign-in-box .side-content .wifi-symbol{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
+        right: 20px;
+    }
+
+    .sign-in-box .side-content .wifi-symbol .third-wave,
+    .side-content .wifi-symbol .second-wave,
+    .side-content .wifi-symbol .first-wave{
+        border: 5px solid transparent;
+        padding: 8px;
+    }
+
+    .side-content .wifi-symbol .dot{
+        width: 70%;
+        height: 70%;
+    }
+
+    .main-container .sign-in-box .side-content footer{
+        margin: 0;
+        font-size: 11px;
+        font-weight: 550;
+    }
+}
