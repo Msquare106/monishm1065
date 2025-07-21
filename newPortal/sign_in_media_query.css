@@ -4,6 +4,7 @@
         height: fit-content;
         flex-wrap: wrap;
         justify-content: center;
+        transform: scale(.7);
     }
 
     .main-container .sign-in-box .sign-in-content{
