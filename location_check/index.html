@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Check Sign In Radius</title>
+</head>
+
+<body>
+  <button type="submit" onclick="checkLocation()">Check Sign In Radius</button>
+  <div id="output"></div>
+  <script>
+    let userLat = null;
+    let userLon = null;
+
+    let office_latitude = 13.002787;
+    let office_longitude = 77.683656;
+
+    // Get user location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        userLat = position.coords.latitude;
+        userLon = position.coords.longitude;
+      },
+      (error) => {
+        alert("Geolocation is required for sign in.");
+      }
+    );
+
+    function checkLocation() {
+      document.getElementById("output").innerHTML = haversine_check(userLat, userLon, office_latitude, office_longitude);
+    }
+    // a = sin²(Δφ / 2) + cos(φ1) × cos(φ2) × sin²(Δλ / 2)
+
+    function haversine_check(userLat, userLon, office_latitude, office_longitude) {
+      const earth_radius = 6371 * 1000;
+      const to_radian = angle => angle * (Math.PI / 180);
+      let delta_phi = to_radian(office_latitude - userLat);
+      let delta_gamma = to_radian(office_longitude - userLon);
+      let phi_1 = to_radian(userLat);
+      let phi_2 = to_radian(office_latitude);
+      const ang = (Math.sin(delta_phi / 2) ** 2) + (Math.cos(phi_1) * Math.cos(phi_2) * Math.sin(delta_gamma / 2) ** 2);
+      const central_ang = 2 * Math.atan2(Math.sqrt(ang), Math.sqrt(1 - ang));
+
+      const distance = Math.round(earth_radius * central_ang);
+      if(distance <= 50){
+        return "Inside Sign In Radius";
+      }else{
+        return "Not inside Sign In Radius";
+      }
+    }
+  </script>
+</body>
+
+</html>
