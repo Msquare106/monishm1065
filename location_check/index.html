@@ -4,7 +4,7 @@
   <title>Check Sign In Radius</title>
 </head>
 <body>
-  <button type="submit" onclick="checkLocation()">Check Sign In Radius</button>
+  <!-- <button type="submit" onclick="checkLocation()">Check Sign In Radius</button> -->
   <div id="output"></div>
 </body>
 <script>
@@ -21,12 +21,13 @@
     timeout: 10000,
     maximumAge: 0
   });
+
   function checkLocation() {
     let office_latitude = 13.002787;
     let office_longitude = 77.683656;
 
     if(userLat !== null && userLon !== null){
-      document.getElementById("output").innerHTML = `Watch Coordinates: ${userLat}, ${userLon} <br><br>` + haversine_check(userLat, userLon, office_latitude, office_longitude);
+      document.getElementById("output").innerHTML = `Coordinates: ${userLat}, ${userLon} <br><br>` + haversine_check(userLat, userLon, office_latitude, office_longitude);
     }
   }
 
@@ -49,5 +50,7 @@
       return "Not inside Sign In Radius";
     }
   }
+
+  setInterval(checkLocation, 1000);
 </script>
 </html>
