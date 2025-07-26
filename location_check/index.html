@@ -10,9 +10,11 @@
 <script>
   let userLat = null;
   let userLon = null;
+  checkLocation();
+  function checkLocation() {
+    let office_latitude = 13.002787;
+    let office_longitude = 77.683656;
 
-  update_position(navigator);
-  function update_position(locator){
     navigator.geolocation.getCurrentPosition((position)=>{
       userLat = position.coords.latitude;
       userLon = position.coords.longitude;
@@ -24,15 +26,10 @@
       timeout: 10000,
       maximumAge: 0
     });
-
-    return `Updated Coordinates: ${userLat}, ${userLon}`;
-  }
-
-  function checkLocation() {
-    let office_latitude = 13.002787;
-    let office_longitude = 77.683656;
     
-    document.getElementById("output").innerHTML = update_position(navigator) + "<br><br>" +haversine_check(userLat, userLon, office_latitude, office_longitude);
+    if(userLat !== null && userLon !== null){
+      document.getElementById("output").innerHTML = `Coordinates: ${userLat}, ${userLon} <br><br>` + haversine_check(userLat, userLon, office_latitude, office_longitude);
+    }
   }
 
   function haversine_check(userLat, userLon, office_latitude, office_longitude) {
@@ -47,7 +44,7 @@
     const ang = (Math.sin(delta_phi / 2) ** 2) + (Math.cos(phi_1) * Math.cos(phi_2) * Math.sin(delta_gamma / 2) ** 2);
     const central_ang = 2 * Math.atan2(Math.sqrt(ang), Math.sqrt(1 - ang));
 
-    const distance = Math.round(earth_radius * central_ang);
+    const distance = earth_radius * central_ang;
     if(distance <= 50){
       return "Inside Sign In Radius";
     }else{
