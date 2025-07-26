@@ -15,18 +15,15 @@
     let office_latitude = 13.002787;
     let office_longitude = 77.683656;
 
-    // Get user location
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        userLat = position.coords.latitude;
-        userLon = position.coords.longitude;
-      },
-      (error) => {
-        alert("Geolocation is required for sign in.");
-      }
-    );
-
     function checkLocation() {
+      navigator.geolocation.getCurrentPosition((position) => {
+          userLat = position.coords.latitude;
+          userLon = position.coords.longitude;
+        },
+        (error) => {
+          alert("Geolocation is required for sign in.");
+        }
+      );
       document.getElementById("output").innerHTML = haversine_check(userLat, userLon, office_latitude, office_longitude);
     }
     // a = sin²(Δφ / 2) + cos(φ1) × cos(φ2) × sin²(Δλ / 2)
