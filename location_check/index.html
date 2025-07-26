@@ -17,18 +17,16 @@
         locator.geolocation.getCurrentPosition((position)=>{
         userLat = position.coords.latitude;
         userLon = position.coords.longitude;
-        console.log("Updated Coordinates: ", userLat, userLon);
       });
+      return `Updated Coordinates: ${userLat}, ${userLon}`;
     }
 
     function checkLocation() {
-      update_coordinates(navigator);
       let office_latitude = 13.002787;
       let office_longitude = 77.683656;
       
-      document.getElementById("output").innerHTML = haversine_check(userLat, userLon, office_latitude, office_longitude);
+      document.getElementById("output").innerHTML = update_coordinates(navigator) + "<br><br>" + haversine_check(userLat, userLon, office_latitude, office_longitude);
     }
-    // a = sin²(Δφ / 2) + cos(φ1) × cos(φ2) × sin²(Δλ / 2)
 
     function haversine_check(userLat, userLon, office_latitude, office_longitude) {
       const earth_radius = 6371 * 1000;
@@ -37,6 +35,8 @@
       let delta_gamma = to_radian(office_longitude - userLon);
       let phi_1 = to_radian(userLat);
       let phi_2 = to_radian(office_latitude);
+
+      // ang = sin²(Δφ / 2) + cos(φ1) × cos(φ2) × sin²(Δλ / 2) 
       const ang = (Math.sin(delta_phi / 2) ** 2) + (Math.cos(phi_1) * Math.cos(phi_2) * Math.sin(delta_gamma / 2) ** 2);
       const central_ang = 2 * Math.atan2(Math.sqrt(ang), Math.sqrt(1 - ang));
 
