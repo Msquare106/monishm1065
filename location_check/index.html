@@ -10,25 +10,23 @@
 <script>
   let userLat = null;
   let userLon = null;
-  checkLocation();
+  let watchId = navigator.geolocation.watchPosition((position)=>{
+    userLat = position.coords.latitude;
+    userLon = position.coords.longitude;
+  },
+  (error)=>{
+    console.error(error);
+  },{
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+  });
   function checkLocation() {
     let office_latitude = 13.002787;
     let office_longitude = 77.683656;
 
-    navigator.geolocation.getCurrentPosition((position)=>{
-      userLat = position.coords.latitude;
-      userLon = position.coords.longitude;
-    },
-    (error)=>{
-      console.error(error);
-    },{
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0
-    });
-    
     if(userLat !== null && userLon !== null){
-      document.getElementById("output").innerHTML = `Coordinates: ${userLat}, ${userLon} <br><br>` + haversine_check(userLat, userLon, office_latitude, office_longitude);
+      document.getElementById("output").innerHTML = `Watch Coordinates: ${userLat}, ${userLon} <br><br>` + haversine_check(userLat, userLon, office_latitude, office_longitude);
     }
   }
 
