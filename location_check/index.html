@@ -16,7 +16,10 @@
     navigator.geolocation.getCurrentPosition((position)=>{
       userLat = position.coords.latitude;
       userLon = position.coords.longitude;
-    }, {
+    },
+    (error)=>{
+      console.error(error);
+    },{
       enableHighAccuracy: true,
       timeout: 10000,
       maximumAge: 0
